@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>PUZZLE-INSCRIPTIONS</title>
+  <base href="/" />
+  <link rel="icon" href="favicon.ico" />
+  <link type="text/css" rel="stylesheet" href="main.css" />
+  <link type="text/css" rel="stylesheet" href="bootstrap.css" />
+ <!--link type="text/css" rel="stylesheet" href="/fontawesome/css/all.min.css" />
+  <script src="sweetalert.min.js"></script-->
+  <style>
+    #table-right .row {
+      flex-direction: column;
+    }
+    
+  </style>
+  <script defer src="alpine.js"></script>
+</head>
+
+<body x-data="{ }" class="custom-background">
+  <div class="bottom-left-corner">
+    <img src="logo2.svg" alt="DFINITY logo" width="200" height="150" />
+  </div>
+  
+  <nav class="navbar navbar-expand-lg" style="background-color: rgba(248, 118, 200, 0);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <div class="d-flex align-items-center">
+          <img src="Puzzle.png" alt="Puzzle Logo" width="50" height="50" />
+          <span class="brand-name">PUZZLE</span>
+        </div>
+      </a>
+      
+      <div class="d-flex">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <form action="#" @submit.prevent="" class="d-flex align-items-center">
+              <template x-if="!!$store.user && !$store.user.isLoggedIn">
+                <div>
+                  <button @click="$store.events.login()" class="btn btn-lg btn-primary d-flex align-items-center rounded-pill" id="login" style="background-color: black; color: white;">
+                    <img src="internet-computer-icp-logo.svg" alt="ICP logo" width="20" height="25" style="margin-right: 5px;" />
+                    <span>LOGIN</span>
+                  </button>
+                </div>
+              </template>
+
+              <template x-if="!!$store.user && $store.user.isLoggedIn">
+                <div>
+                  <button @click="$store.events.logout()" class="btn btn-lg btn-primary d-flex align-items-center rounded-pill" id="logout" style="background-color: black; color: white;">
+                    <img src="internet-computer-icp-logo.svg" alt="ICP logo" width="20" height="25" style="margin-right: 5px;" />
+                    <span style="margin-left: 5px;">LOGOUT</span>
+                  </button>
+                  <div class="principal-bar" @click="$store.events.greet()"></div>
+                </div>
+              </template>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <p id="principal-id"></p>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <section id="table" class="extra-space">
+          <div class="container" x-data="{ messages: !!$store.messages ? $store.messages?.messages : []}">
+            <template x-for="message in messages">
+              <div class="message-tile" x-on:click="message.active = !message.active" x-bind:class="{ 'active': message.active }">
+                <div class="tile">
+                  <div class="front" x-show="!message.active">
+                    <div class="message-id">
+                      <span class="message-id-number" x-text="message.messageId"></span>
+                    </div>
+                    <div class="message-text" x-text="message.content.Text" :data-text="message.content.Text"></div>
+                    <div class="vote-actions">
+                      <button @click.stop="$store.events.upVote(message.messageId)" class="btn upvote-button upvote-button">
+                        <img src="upvote.svg" alt="Upvote" class="upvote-icon">
+                      </button>                   
+                      <button @click.stop="$store.events.downVote(message.messageId)" class="btn btn downvote-button">
+                        <img src="downvote.svg" alt="Downvote" class="downvote-icon">
+                      </button>
+                    </div>
+                    <div class="other-actions">
+                      <button @click.stop="$store.events.deleteMessage(message.messageId)" class="btn btn delete-button">
+                        <img src="delete.svg" alt="Delete" class="delete-icon">
+                      </button>                    
+                    </div>
+                  </div>
+                  <div class="back" x-show="message.active">
+                    <div class="message-creator">Uploaded By: <span x-text="message.creator"></span></div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </section>
+      </div>
+    
+      
+        <section id="table-right">
+          <div class="container-right" x-data="{ messages: !!$store.messages ? $store.messages?.messages : []}">
+            <div class="row">
+              <template x-for="message in messages">
+                <div class="message-right">
+                  <div class="message-content-right">
+                    <div class="message-text-right">
+                      <div class="message-id" x-text="message.messageId"></div>
+                      <div class="message-creator" x-text="message.creator" @click="expandMessageCreator($event)"></div>
+                      <div class="message-text" x-text="message.content.Text"></div>
+                    </div>
+                    <div class="message-actions-right">
+                    </div>
+                  
+                      <button @click.stop="$store.events.upVote(message.messageId)" class="btn upvote-button-right">
+                        <img src="upvote.svg" alt="Upvote" class="upvote-icon-right">
+                      </button>
+                      <button @click.stop="$store.events.downVote(message.messageId)" class="btn downvote-button-right">
+                        <img src="downvote.svg" alt="Downvote" class="downvote-icon-right">
+                      </button>
+                      <button @click.stop="$store.events.deleteMessage(message.messageId)" class="btn delete-button-right">
+                        <img src="delete.svg" alt="Delete" class="delete-icon-right">
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div> 
+        </section>
+      </div>
+    </div>
+  </div>
+      
+   
+
+  <div class="fixed-bottom">
+    <div class="form-container">
+      <form action="#" id="writeForm" method="POST" class="center-bottom">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <div class="textarea-container">
+              <textarea name="Text" id="formText" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="col-md-12 mb-3">
+              <button type="submit" class="btn btn-primary" id="submit-btn" name="write">Inscribe on Puzzle</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<!--script src="./main.js"></script-->
+  <script src="jquery.js"></script>
+  <script src="popper.js"></script>
+  <!--script src="bootstrap.js"></script>
+    <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script-->
+</body>
+
+</html>

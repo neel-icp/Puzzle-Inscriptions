@@ -1,0 +1,395 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Enable scrolling for all */
+body {
+    overflow-y: auto;
+}
+  
+nav.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-left: 0;
+  z-index: 9999;
+}
+
+img {
+  max-width: 50vw;
+  max-height: 25vw;
+  display: block;
+  margin: auto;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0; /* Update from "left" to "right" */
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 25px;
+    background-color: transparent;
+    z-index: 999;
+  }
+  
+  .form-container {
+    max-width: 275px; /* Adjust the value as needed */
+    width: 100%;
+    margin: 10;
+    padding: 0px;
+    
+  }
+  
+  
+  
+  
+  
+  .textarea-container {
+    margin-right: -20px;
+    margin-bottom: 35px; /* Adjust the margin as needed */
+  }
+  
+
+.bottom-left-corner {
+  position: fixed;
+  left: 10;
+  bottom: 0;
+  z-index: 9998;
+}
+
+/* ... */
+.message-tile {
+    width: 200px;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+    height: 200px;
+    position: relative;
+    perspective: 1000px;
+    margin: 10px; /* Add margin to create space between tiles */
+    cursor: pointer; /* Add cursor pointer to indicate clickable */
+    overflow: hidden; /* Hide overflowing content */
+    transition: transform 0.6s, width 0.6s; /* Add width transition */
+}
+  
+  
+  .tile {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+  
+  .front,
+  .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  .front {
+    background-color: #ff84bb;
+    transform: rotateY(0deg);
+    position: relative;
+    overflow: hidden; /* Hide overflowing content */
+  }
+  .back {
+    font-family: 'Cherry Bomb One', sans-serif;
+    background-color: #5c9dff;
+    transform: rotateY(180deg);
+    transform-origin: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .message-tile.active .tile {
+    transform: rotateY(180deg);
+  }
+  
+  
+
+  .message-text {
+    font-family: 'Cherry Bomb One', sans-serif;
+    margin: 10px;
+    display: -webkit-box;
+    text-align: start;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: hidden;
+    word-break: break-word;
+    transition: max-height 0.4s;
+  }
+  
+  .message-tile .message-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Show up to 4 lines of text */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    transition: max-height 0.4s;
+  }
+  
+  .container-right .message-text {
+    overflow: visible; /* Show the full message text in the right table */
+  }
+  
+  .message-id {
+    font-family: 'Cherry Bomb One', sans-serif;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #d4f1ff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 50px;
+  }
+
+.brand-name {
+    font-family: 'Cherry Bomb One', sans-serif;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  font-size: 1.5rem;
+  color: #ff5585;
+}
+
+#login.btn-primary,
+#logout.btn-primary {
+    font-family: 'Cherry Bomb One', sans-serif;
+  position: relative;
+  overflow: hidden;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 2px;
+  font-size: 16px;
+  animation: glowing infinite;
+}
+
+#login.btn-primary:hover,
+#logout.btn-primary:hover {
+  animation: none;
+  box-shadow: 0 0 0 20px rgb(0, 195, 255), 0 0 0 40px rgb(255, 96, 252), 0 0 0 60px rgba(92, 195, 255, 0.663), 0 0 0 80px rgb(228, 118, 255), 0 0 0 100px rgba(76, 183, 255, 0.5), 0 0 0 120px rgba(250, 91, 255, 0.5), 0 0 0 140px rgba(74, 153, 255, 0.5);
+}
+
+#submit-btn {
+    font-family: 'Cherry Bomb One', sans-serif;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 15px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-color: rgb(80, 175, 253);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  animation: glowing infinite;
+}
+
+#submit-btn:hover {
+  background-color: rgb(225, 102, 221);
+  animation: none;
+  box-shadow: 0 0 0 20px rgb(0, 195, 255), 0 0 0 40px rgb(255, 96, 252), 0 0 0 60px rgba(92, 195, 255, 0.663), 0 0 0 80px rgb(228, 118, 255), 0 0 0 100px rgba(76, 183, 255, 0.5), 0 0 0 120px rgba(250, 91, 255, 0.5), 0 0 0 140px rgba(74, 153, 255, 0.5);
+}
+
+#table {
+  margin-top: 80px;
+}
+
+.custom-background {
+  background-color: rgb(108, 213, 255) !important;
+}
+
+  
+  
+  .main-content {
+    padding-bottom: 60px; /* Adjust as needed */
+  } 
+  .upvote-count {
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  .upvote-icon {
+    width: 30px;  /* adjust as needed */
+    height: 30px; /* adjust as needed */
+  }
+  .downvote-icon {
+    width: 30px;  /* adjust as needed */
+    height: 30x; /* adjust as needed */
+  }
+  .delete-icon {
+    width: 25px;  /* adjust as needed */
+    height: 25px; /* adjust as needed */
+  }
+  .vote-actions {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    display: flex;
+  }
+  
+  .other-actions {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    display: flex;
+  }
+  
+  
+.extra-space {
+  padding-bottom: 800px; /* Adjust this value as needed */
+}
+@font-face {
+    font-family: 'Cherry Bomb One';
+    src: url('fonts/CherryBombOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0;
+  }
+  
+  .message-right {
+    text-align: left;
+    background-color: rgb(57, 139, 216);
+    padding: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    
+    
+  }
+  
+  .message-right .message-content-right {
+    font-family: 'Cherry Bomb One', sans-serif;
+    flex-grow: 10;
+  }
+  
+  .message-right .message-text-right {
+    .message-text {
+        font-family: 'Cherry Bomb One', sans-serif;
+        margin: 10px;
+        display: -webkit-box;
+        text-align: start;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        transition: max-height 0.4s;
+      }
+      
+      .message-tile:hover .message-text {
+        max-height: none; /* Show the full message text on hover */
+        overflow: visible; /* Show overflowing content */
+      };
+  }
+  
+  
+  
+  
+  .message-actions-right {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 0px;
+  }
+  
+  .upvote-icon-right,
+  .downvote-icon-right,
+  .delete-icon-right {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .upvote-button-right,
+  .downvote-button-right,
+  .delete-button-right {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .upvote-button-right:hover,
+  .downvote-button-right:hover,
+  .delete-button-right:hover {
+    opacity: 0.8;
+  }
+  .container-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    overflow: auto; /* Enable scrolling */
+    max-height: calc(100vh - 250px); /* Adjust the value as needed */
+    padding-right: 10px; /* Add padding to prevent cutting off content */
+  }
+  
+  .container-right::-webkit-scrollbar {
+    width: 0; /* Hide the scrollbar */
+    height: 0;
+  }
+  #table {
+    min-height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  
+  
+  
+  
+  
+  
+  #table-right {
+    height: 0%;
+    width: 300px; /* Adjust the width as needed */
+    background-color: #f5f5f500; /* Set the background color of the table right section */
+    position: fixed;
+    top: 60px;
+    right: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* Adjust the height of your header */
+    background-color: #f5f5f5; /* Set the background color of your header */
+  }
+  
+  #principal-id {
+    text-align: center;
+  }
+  
+  
+  
